@@ -8,6 +8,3 @@ RUN apk update && \
 RUN git clone https://github.com/ifnesi/pydatagen && \
     python3 -m pip install --upgrade pip && \
     python3 -m pip install --no-cache-dir -r pydatagen/requirements.txt
-
-# Python script to publish data to Kafka (topic: user_behavior, 7 partitions)
-#CMD ["python3", "pydatagen/pydatagen.py", "--schema-filename", "users_behavior.avro", "--keyfield", "user_id", "--topic", "user_behavior", "--bootstrap-servers", "broker:9094", "--schema-registry", "http://schema-registry:9081", "--interval", "100"]
