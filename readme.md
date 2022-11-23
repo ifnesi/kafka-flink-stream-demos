@@ -1,15 +1,10 @@
 # Demo to use Apache Kafka with Apache Flink (SQL)
 The docker-compose, Dockerfile and some of the examples were based on: https://github.com/confluentinc/flink-sandbox
 
-## Build flink-sandbox/pydatagen docker images (execute only once or in case any of the docker files are changed)
+## Start the demo
+That will build flink-sandbox/pydatagen docker images and the docker containers (1x job manager and 4x task managers)
 ```
-docker build -t flink-sandbox . -f Dockerfile_flink
-docker build -t pydatagen . -f Dockerfile_pydatagen
-```
-
-## Startup docker containers (1x job manager and 4x task managers)
-```
-docker-compose up --force-recreate --always-recreate-deps -V --scale taskmanager=5 -d
+./start_demo.sh
 ```
 Go to Job Manager dashboard (http://127.0.0.1:8081) and see the number of available task managers (5x)<br>
 Any SQL statement will consume a task manager and will remain seized for the duration of the statement execution, for example an <code>INSERT</code> statement where it merges/aggregate data will be considered a long running job and eventually consume the task manager "forever" (or until terminated)<br><br>
@@ -354,5 +349,5 @@ Once completed, exit the Flink SQL Client, the flink shell and stop the docker c
 ```
 exit;
 exit
-docker compose down
+./stop_demo.sh
 ```
