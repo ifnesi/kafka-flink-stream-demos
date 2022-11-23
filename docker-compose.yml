@@ -144,7 +144,7 @@ services:
     hostname: datagen
     container_name: datagen
     command: >
-      sh -c "while [[ \"$(curl -s -o /dev/null -w ''%{http_code}'' http://schema-registry:9081)\" != \"200\" ]]; do sleep 2; done && python3 pydatagen/pydatagen.py --schema-filename users_behavior.avro --keyfield user_id --topic user_behavior  --bootstrap-servers broker:9094  --schema-registry http://schema-registry:9081  --interval 100"
+      sh -c "while [[ \"$(curl -s -o /dev/null -w ''%{http_code}'' http://schema-registry:9081)\" != \"200\" ]]; do sleep 2; done && python3 pydatagen/pydatagen.py --schema-filename users_behavior.avro --topic user_behavior --headers-filename dynamic_000.py --keyfield user_id --bootstrap-servers broker:9094 --schema-registry http://schema-registry:9081 --interval 100"
     depends_on:
       - control-center
       - flink
