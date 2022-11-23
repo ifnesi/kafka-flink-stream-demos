@@ -344,7 +344,7 @@ Or view data on Flink SQL client
 SELECT * FROM user_name_age;
 ```
 
-Have a look on Job Manager dashboard () and Confluent Control Center () to see the stream processing in action.<br>
+Have a look on Job Manager dashboard (http://127.0.0.1:8081) and Confluent Control Center (http://127.0.0.1:9021) to see the stream processing in action.<br>
 Once completed, exit the Flink SQL Client, the flink shell and stop the docker containers
 ```
 exit;
